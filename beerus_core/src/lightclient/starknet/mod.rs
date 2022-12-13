@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 use crate::config::Config;
 use async_trait::async_trait;
 use eyre::Result;
@@ -10,7 +12,7 @@ use url::Url;
 
 #[automock]
 #[async_trait]
-pub trait StarkNetLightClient: Send + Sync {
+pub trait StarkNetLightClient: Send + Sync + Debug {
     async fn start(&self) -> Result<()>;
     async fn call(&self, opts: FunctionCall, block_number: u64) -> Result<Vec<FieldElement>>;
     async fn get_storage_at(
@@ -22,6 +24,7 @@ pub trait StarkNetLightClient: Send + Sync {
     async fn get_nonce(&self, _block_number: u64, address: FieldElement) -> Result<FieldElement>;
 }
 
+#[derive(Debug)]
 pub struct StarkNetLightClientImpl {
     client: JsonRpcClient<HttpTransport>,
 }

@@ -12,7 +12,7 @@ pub const DEFAULT_STARKNET_CORE_CONTRACT_ADDRESS: &str =
     "0xde29d060D45901Fb19ED6C6e959EB22d8626708e";
 
 /// Global configuration.
-#[derive(Clone, PartialEq)]
+#[derive(Clone, PartialEq, Debug)]
 pub struct Config {
     /// Ethereum network.
     pub ethereum_network: String,
